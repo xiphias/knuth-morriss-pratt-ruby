@@ -15,12 +15,15 @@ end
 def substrings(haystack, needle)
   r=[]
   t=jump_table(needle)
-  ind=0
-  for i in 0...(haystack.length)
+  ind=0 # Potential position of start of substring
+  for i in 0...(haystack.length) # Process search string
+    # Did we find the substring?
     if i-ind==needle.size-1 and haystack[i]==needle[i-ind]
       r << ind
       ind=i-t[i-ind]
     end
+    
+    # Jump to later indices if needed
     while (i-ind==needle.size-1) or (ind<=i and haystack[i]!=needle[i-ind])
       ind=i-t[i-ind]
     end
@@ -28,10 +31,10 @@ def substrings(haystack, needle)
   return r
 end
 
-p jump_table("ABCABCDE") # -1, 0, 0, 0, 1, 2, 3, 0
-p jump_table("PARTICIPATE IN PARACHUTE")
-p jump_table("ABCCABCDABCCABCCD") # -1, 0, 0, 0, 1, 2, 3, 0
-p substrings("ABCCABCCABCDABCCABCCD", "ABCCABCDABCCABCCD")
-p substrings("ABABBAB", "AB")
-p substrings("ABC ABCDAB ABCDABCDABDE", "ABCDABD")
-p substrings("ABC ABCDAB ABCDABCDABDE", "ABCDEF")
+p jump_table("ABCABCDE") # [-1, 0, 0, 0, 1, 2, 3, 0]
+p jump_table("PARTICIPATE IN PARACHUTE") # [-1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0]
+p jump_table("ABCCABCDABCCABCCD") # [-1, 0, 0, 0, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 4]
+p substrings("ABCCABCCABCDABCCABCCD", "ABCCABCDABCCABCCD") # [4]
+p substrings("ABABBAB", "AB") # [0, 2, 5]
+p substrings("ABC ABCDAB ABCDABCDABDE", "ABCDABD") # [15]
+p substrings("ABC ABCDAB ABCDABCDABDE", "ABCDEF") # []
