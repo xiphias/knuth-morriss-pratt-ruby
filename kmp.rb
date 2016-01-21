@@ -1,3 +1,6 @@
+# Copyright (c) 2015 Adam Ritter
+# License: MIT License
+
 # Create a jump table
 def jump_table(s)
   i=0
