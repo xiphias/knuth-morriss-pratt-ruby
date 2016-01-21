@@ -1,4 +1,4 @@
-# Copyright (c) 2015 Adam Ritter
+# Copyright (c) 2016 Adam Ritter
 # License: MIT License
 
 # Create a jump table
